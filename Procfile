@@ -1,1 +1,1 @@
-web: gunicorn app:app 
+web: gunicorn --workers 2 --timeout 120 --log-level debug --access-logfile - --error-logfile - app:app 

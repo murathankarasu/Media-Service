@@ -5,13 +5,13 @@ FROM python:3.10.12-slim
 WORKDIR /app
 
 # Önbelleği ve gereksiz dosyaları temizlemek için ortam değişkenleri
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED=1
 ENV PIP_NO_CACHE_DIR=off 
 ENV PIP_DISABLE_PIP_VERSION_CHECK=on 
 ENV PIP_DEFAULT_TIMEOUT=100
 
 # requirements.txt dosyasını kopyala ve bağımlılıkları yükle
-COPY requirements.txt requirements.txt
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # CLIP modelini Docker imajı oluşturulurken indir
@@ -21,7 +21,5 @@ RUN python -c "import clip; print(clip.load('ViT-B/32'))"
 # Geri kalan uygulama kodunu kopyala
 COPY . .
 
-# Railway Procfile kullanacağı için CMD belirtmek şart değil,
-# ancak imajın bağımsız çalışabilmesi için eklenebilir.
 # Gunicorn'un Railway tarafından sağlanan PORT'u kullanması önemlidir.
-# CMD gunicorn app:app --bind 0.0.0.0:${PORT:-8080} 
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:${PORT:-8080}"] 

@@ -1,0 +1,13 @@
+Flask
+Pillow
+gunicorn
+numpy
+torch
+torchvision
+torchaudio
+ftfy
+regex
+tqdm
+openai-clip
+opencv-python
+pillow-heif 

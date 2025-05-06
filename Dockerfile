@@ -24,4 +24,4 @@ COPY . .
 # Gunicorn'un Railway tarafından sağlanan PORT'u kullanması önemlidir.
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080"]
 
-RUN apt-get update && apt-get install -y libgl1-mesa-glx 
+RUN apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0 libsm6 libxext6 libxrender1 

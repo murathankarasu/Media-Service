@@ -22,4 +22,6 @@ RUN python -c "import clip; print(clip.load('ViT-B/32'))"
 COPY . .
 
 # Gunicorn'un Railway tarafından sağlanan PORT'u kullanması önemlidir.
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080"] 
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080"]
+
+RUN apt-get update && apt-get install -y libgl1-mesa-glx 

@@ -22,4 +22,4 @@ RUN python -c "import clip; print(clip.load('ViT-B/32'))"
 COPY . .
 
 # Gunicorn'un Railway tarafından sağlanan PORT'u kullanması önemlidir.
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:${PORT:-8080}"] 
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080"] 
